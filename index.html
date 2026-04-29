@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Shiren's Seblak Bar | Form UMKM Modern</title>
+  <!-- Tailwind CSS + Font Awesome + Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom Tailwind config untuk warna lebih hidup -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'umkm-primary': '#0F766E',    // teal modern
+            'umkm-secondary': '#14B8A6',  // turquoise segar
+            'umkm-accent': '#F59E0B',     // aksen jahe/seblak
+            'umkm-bg-light': '#F0FDF9',
+          },
+          fontFamily: {
+            'poppins': ['Poppins', 'sans-serif'],
+            'inter': ['Inter', 'sans-serif'],
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+            'float-slow': 'float 4s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #eef9f5 0%, #daf1ec 100%);
+    }
+    h1, h2, .font-brand {
+      font-family: 'Poppins', sans-serif;
+    }
+    /* custom transition untuk hover */
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
+    }
+    input, textarea, select {
+      transition: all 0.2s ease;
+    }
+    input:focus, textarea:focus, select:focus {
+      transform: scale(1.01);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.2);
+    }
+    /* animasi fade in untuk produk item */
+    .product-item {
+      animation: fadeInUp 0.4s ease forwards;
+      opacity: 0;
+    }
+    .product-item:nth-child(1) { animation-delay: 0.05s; }
+    .product-item:nth-child(2) { animation-delay: 0.1s; }
+    .product-item:nth-child(3) { animation-delay: 0.15s; }
+    .product-item:nth-child(4) { animation-delay: 0.2s; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Hero / Header dengan animasi -->
+  <div class="relative overflow-hidden bg-gradient-to-r from-teal-800 to-emerald-700 text-white shadow-xl">
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute -top-24 -right-24 w-72 h-72 bg-yellow-400 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-10 w-64 h-64 bg-teal-300 rounded-full blur-2xl"></div>
+    </div>
+    <div class="container mx-auto px-6 py-10 md:py-16 relative z-10">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="text-center md:text-left animate-fade-in-up">
+          <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-medium mb-4">
+            <i class="fas fa-store text-yellow-300"></i>
+            <span>UMKM Binaan • Rasa Otentik</span>
+          </div>
+          <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-3 flex items-center gap-2 flex-wrap justify-center md:justify-start">
+            Shiren’s Seblak Bar 
+            <i class="fas fa-pepper-hot text-yellow-300 text-4xl animate-pulse"></i>
+          </h1>
+          <p class="text-lg md:text-xl text-teal-100 max-w-2xl mx-auto md:mx-0">Pedas nendang, gurih meresap • Daftarkan usaha seblak modern Anda sekarang juga!</p>
+        </div>
+        <div class="mt-6 md:mt-0 animate-float-slow hidden md:block">
+          <div class="bg-white/10 rounded-2xl p-3 backdrop-blur-sm">
+            <i class="fas fa-bowl-food text-6xl text-yellow-200"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- gelombang dekoratif -->
+    <svg class="absolute bottom-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80">
+      <path fill="#F0FDF9" fill-opacity="1" d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,80L1360,80C1280,80,1120,80,960,80C800,80,640,80,480,80C320,80,160,80,80,80L0,80Z"></path>
+    </svg>
+  </div>
+
+  <!-- Form Utama -->
+  <div class="container mx-auto px-4 md:px-6 py-12 max-w-6xl">
+    <!-- Kartu besar dengan efek glassmorphism ringan -->
+    <div class="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/40 overflow-hidden transition-all duration-500 hover:shadow-teal-100/50">
+      <div class="p-6 md:p-8 lg:p-10">
+        <!-- progress atau judul bagian -->
+        <div class="mb-8 border-b border-teal-100 pb-4 flex items-center gap-3">
+          <div class="bg-teal-100 text-teal-700 w-10 h-10 rounded-xl flex items-center justify-center text-xl">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Form Pendaftaran UMKM</h2>
+            <p class="text-gray-500 text-sm">Lengkapi data bisnis seblak Anda secara profesional</p>
+          </div>
+        </div>
+
+        <form id="umkmForm" class="space-y-8">
+          <!-- Bagian 1: Data Dasar UMKM -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Nama UMKM -->
+            <div class="space-y-2 transition-all duration-200">
+              <label class="flex items-center gap-2 text-gray-700 font-semibold text-sm"><i class="fas fa-store text-teal-600"></i> Nama UMKM <span class="text-red-500">*</span></label>
+              <input type="text" required placeholder="Contoh: Shiren’s Seblak Bar - Cabang Tamansari" class="w-full px-5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-teal-400 outline-none transition">
+            </div>
+            <!-- Nama Pemilik -->
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 text-gray-700 font-semibold text-sm"><i class="fas fa-user-circle text-teal-600"></i> Nama Pemilik <span class="text-red-500">*</span></label>
+              <input type="text" required placeholder="Nama lengkap pemilik" class="w-full px-5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-teal-400 outline-none transition">
+            </div>
+            <!-- Alamat Lengkap (full width) -->
+            <div class="md:col-span-2 space-y-2">
+              <label class="flex items-center gap-2 text-gray-700 font-semibold text-sm"><i class="fas fa-location-dot text-teal-600"></i> Alamat Lengkap <span class="text-red-500">*</span></label>
+              <textarea rows="2" required placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota, Kode Pos" class="w-full px-5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-teal-400 outline-none transition"></textarea>
+            </div>
+            <!-- No HP/WA -->
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 text-gray-700 font-semibold text-sm"><i class="fab fa-whatsapp text-green-600"></i> No. HP / WhatsApp <span class="text-red-500">*</span></label>
+              <input type="tel" required placeholder="08xx-xxxx-xxxx" class="w-full px-5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-teal-400 outline-none transition">
+            </div>
+            <!-- Email Opsional -->
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 text-gray-700 font-semibold text-sm"><i class="fas fa-envelope text-teal-600"></i> Email (opsional)</label>
+              <input type="email" placeholder="email@bisnisanda.com" class="w-full px-5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-teal-400 outline-none transition">
+            </div>
+            <!-- Deskripsi Usaha -->
+            <div class="md:col-span-2 space-y-2">
+              <label class="flex items-center gap-2 text-gray-700 font-semibold text-sm"><i class="fas fa-pen-fancy text-teal-600"></i> Deskripsi Usaha <span class="text-red-500">*</span></label>
+              <textarea rows="3" required placeholder="Ceritakan keunikan seblak Anda, varian rasa, bahan premium, atau keistimewaan Shiren’s Seblak Bar..." class="w-full px-5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-teal-400 outline-none transition"></textarea>
+            </div>
+            <!-- Kategori Usaha + Jam Operasional (2 kolom)-->
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 text-gray-700 font-semibold text-sm"><i class="fas fa-tags text-teal-600"></i> Kategori Usaha <span class="text-red-500">*</span></label>
+              <select required class="w-full px-5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-teal-400 outline-none">
+                <option value="">Pilih Kategori</option>
+                <option value="Makanan & Minuman">🍜 Makanan & Minuman</option>
+                <option value="Kuliner Nusantara">🌶️ Kuliner Nusantara</option>
+                <option value="Camilan & Snack">🍿 Camilan & Snack</option>
+                <option value="Food Truck">🚚 Food Truck</option>
+                <option value="Katering Seblak">📦 Katering Seblak</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 text-gray-700 font-semibold text-sm"><i class="fas fa-clock text-teal-600"></i> Jam Operasional <span class="text-red-500">*</span></label>
+              <input type="text" required placeholder="Contoh: Senin - Sabtu, 10:00 - 21:00" class="w-full px-5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-teal-400 outline-none transition">
+            </div>
+          </div>
+
+          <!-- Daftar Produk Dinamis -->
+          <div class="mt-8 border-t-2 border-teal-100 pt-8">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+              <div class="flex items-center gap-2">
+                <i class="fas fa-utensils text-2xl text-teal-700"></i>
+                <h3 class="text-xl font-bold text-gray-800">🍲 Daftar Produk Unggulan</h3>
+                <span class="bg-teal-100 text-teal-800 text-xs px-2 py-1 rounded-full">Minimal 1 produk</span>
+              </div>
+              <button type="button" id="tambahProdukBtn" class="bg-teal-600 hover:bg-teal-700 transition-all transform hover:scale-105 text-white font-medium px-5 py-2 rounded-xl shadow-md flex items-center gap-2">
+                <i class="fas fa-plus-circle"></i> Tambah Produk
+              </button>
+            </div>
+            
+            <div id="produkContainer" class="space-y-5">
+              <!-- Produk default 1 (template) -->
+              <div class="product-item bg-white border border-teal-100 rounded-2xl p-5 shadow-sm card-hover transition-all relative group">
+                <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition">
+                  <button type="button" class="hapusProdukBtn text-red-400 hover:text-red-700 bg-white rounded-full p-1 shadow text-sm" title="Hapus produk"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+                  <div class="md:col-span-5">
+                    <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-tag text-teal-500"></i> Nama Produk <span class="text-red-500">*</span></label>
+                    <input type="text" class="nama-produk w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-gray-50 focus:border-teal-400" placeholder="Contoh: Seblak Original Special" required>
+                  </div>
+                  <div class="md:col-span-3">
+                    <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-money-bill-wave text-teal-500"></i> Harga <span class="text-red-500">*</span></label>
+                    <div class="relative">
+                      <span class="absolute left-3 top-2.5 text-gray-500">Rp</span>
+                      <input type="number" class="harga-produk w-full pl-8 pr-3 py-2.5 rounded-lg border border-gray-200 bg-gray-50 focus:border-teal-400" placeholder="15000" required>
+                    </div>
+                  </div>
+                  <div class="md:col-span-4">
+                    <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-info-circle text-teal-500"></i> Deskripsi singkat</label>
+                    <input type="text" class="desk-produk w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-gray-50 focus:border-teal-400" placeholder="Kerupuk renyah, bumbu rahasia pedas level 2">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-gray-400 mt-3 ml-1"><i class="fas fa-info-circle"></i> Anda dapat menambah hingga 8 varian seblak andalan</p>
+          </div>
+
+          <!-- Tombol Submit & Reset -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-end pt-6 border-t border-gray-200 mt-6">
+            <button type="reset" class="px-7 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-all flex items-center gap-2 justify-center">
+              <i class="fas fa-eraser"></i> Reset Form
+            </button>
+            <button type="submit" id="submitBtn" class="px-8 py-3 rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold shadow-lg transition-all transform hover:scale-[1.02] flex items-center gap-2 justify-center">
+              <i class="fas fa-paper-plane"></i> Daftarkan UMKM Sekarang
+            </button>
+          </div>
+        </form>
+
+        <!-- Success Message / Modal sederhana -->
+        <div id="successToast" class="fixed bottom-6 right-6 z-50 bg-white rounded-2xl shadow-2xl border-l-8 border-teal-500 p-4 w-80 transform transition-all duration-500 translate-x-full opacity-0 pointer-events-none">
+          <div class="flex gap-3 items-center">
+            <div class="bg-teal-100 rounded-full p-2"><i class="fas fa-check-circle text-teal-600 text-xl"></i></div>
+            <div>
+              <p class="font-bold text-gray-800">Berhasil terdaftar!</p>
+              <p class="text-sm text-gray-600">Shiren’s Seblak Bar siap melegenda.</p>
+            </div>
+            <button id="closeToast" class="ml-auto text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- footer quote -->
+    <div class="text-center mt-8 text-gray-500 text-sm flex justify-center gap-4 flex-wrap">
+      <span><i class="fas fa-pepper-hot text-teal-500"></i> Pedasnya menggoda</span>
+      <span><i class="fas fa-star text-yellow-500"></i> Resep turun-temurun</span>
+      <span><i class="fas fa-mobile-alt text-teal-500"></i> Siap Go Digital!</span>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const produkContainer = document.getElementById('produkContainer');
+      const tambahBtn = document.getElementById('tambahProdukBtn');
+      const maxProduk = 8;
+      
+      // Fungsi untuk membuat elemen produk baru
+      function createProductItem(produkData = null) {
+        const div = document.createElement('div');
+        div.className = 'product-item bg-white border border-teal-100 rounded-2xl p-5 shadow-sm card-hover transition-all relative group';
+        div.innerHTML = `
+          <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition">
+            <button type="button" class="hapusProdukBtn text-red-400 hover:text-red-700 bg-white rounded-full p-1 shadow text-sm"><i class="fas fa-trash-alt"></i></button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+            <div class="md:col-span-5">
+              <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-tag text-teal-500"></i> Nama Produk <span class="text-red-500">*</span></label>
+              <input type="text" class="nama-produk w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-gray-50 focus:border-teal-400" placeholder="Contoh: Seblak Komplit" value="${produkData?.nama || ''}" required>
+            </div>
+            <div class="md:col-span-3">
+              <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-money-bill-wave text-teal-500"></i> Harga <span class="text-red-500">*</span></label>
+              <div class="relative">
+                <span class="absolute left-3 top-2.5 text-gray-500">Rp</span>
+                <input type="number" class="harga-produk w-full pl-8 pr-3 py-2.5 rounded-lg border border-gray-200 bg-gray-50 focus:border-teal-400" placeholder="15000" value="${produkData?.harga || ''}" required>
+              </div>
+            </div>
+            <div class="md:col-span-4">
+              <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-info-circle text-teal-500"></i> Deskripsi singkat</label>
+              <input type="text" class="desk-produk w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-gray-50 focus:border-teal-400" placeholder="Crispy & gurih dengan topping ceker" value="${produkData?.desk || ''}">
+            </div>
+          </div>
+        `;
+        // event listener untuk tombol hapus di dalam produk baru
+        const hapusBtn = div.querySelector('.hapusProdukBtn');
+        if (hapusBtn) {
+          hapusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (produkContainer.children.length > 1) {
+              div.remove();
+            } else {
+              alert('Minimal harus memiliki satu produk. Isi minimal 1 varian seblak.');
+            }
+          });
+        }
+        return div;
+      }
+
+      // Event tambah produk
+      tambahBtn.addEventListener('click', () => {
+        const currentCount = produkContainer.children.length;
+        if (currentCount >= maxProduk) {
+          alert(`Maksimal ${maxProduk} varian produk. Cukup untuk menu andalan!`);
+          return;
+        }
+        const newProduct = createProductItem();
+        produkContainer.appendChild(newProduct);
+        // smooth scroll sedikit
+        newProduct.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      // Inisialisasi: pasang event hapus untuk produk default (yang sudah ada)
+      function initDeleteButtons() {
+        document.querySelectorAll('.hapusProdukBtn').forEach(btn => {
+          // hindari double listener
+          btn.removeEventListener('click', handleDelete);
+          btn.addEventListener('click', handleDelete);
+        });
+      }
+      function handleDelete(e) {
+        e.preventDefault();
+        const productDiv = e.currentTarget.closest('.product-item');
+        if (productDiv && produkContainer.children.length > 1) {
+          productDiv.remove();
+        } else if (productDiv && produkContainer.children.length === 1) {
+          alert('Setidaknya harus ada satu produk pada daftar. Tidak bisa menghapus semua produk.');
+        }
+      }
+      initDeleteButtons();
+
+      // MutationObserver untuk menghandle produk tambahan dinamis agar hapus berfungsi
+      const observer = new MutationObserver(() => {
+        document.querySelectorAll('.hapusProdukBtn').forEach(btn => {
+          btn.removeEventListener('click', handleDelete);
+          btn.addEventListener('click', handleDelete);
+        });
+      });
+      observer.observe(produkContainer, { childList: true, subtree: true });
+
+      // Submit form: validasi dan tampilkan data di console / toast
+      const form = document.getElementById('umkmForm');
+      const successToast = document.getElementById('successToast');
+      const closeToastBtn = document.getElementById('closeToast');
+
+      function showSuccessToast() {
+        successToast.classList.remove('translate-x-full', 'opacity-0');
+        successToast.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+        setTimeout(() => {
+          successToast.classList.add('translate-x-full', 'opacity-0');
+          successToast.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+        }, 4000);
+      }
+      if (closeToastBtn) {
+        closeToastBtn.addEventListener('click', () => {
+          successToast.classList.add('translate-x-full', 'opacity-0');
+          successToast.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+        });
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Ambil data dasar
+        const namaUMKM = form.querySelector('input[placeholder*="Shiren’s Seblak Bar"]') || form.querySelector('input[type="text"]:first-of-type');
+        const inputs = form.querySelectorAll('input, textarea, select');
+        let basicData = {};
+        // mapping sederhana (lebih aman ambil berdasarkan label)
+        const fields = {
+          namaUmkm: 'input[placeholder*="Shiren’s Seblak Bar"], input[placeholder*="Contoh: Shiren’s"]',
+          namaPemilik: 'input[placeholder="Nama lengkap pemilik"]',
+          alamat: 'textarea[placeholder*="Jalan, RT/RW"]',
+          noHp: 'input[type="tel"]',
+          email: 'input[type="email"]',
+          deskripsiUsaha: 'textarea[placeholder*="Ceritakan keunikan"]',
+          kategori: 'select',
+          jamOperasional: 'input[placeholder*="Senin - Sabtu"]'
+        };
+        try {
+          basicData.namaUMKM = document.querySelector(fields.namaUmkm)?.value || '';
+          basicData.namaPemilik = document.querySelector(fields.namaPemilik)?.value || '';
+          basicData.alamat = document.querySelector(fields.alamat)?.value || '';
+          basicData.noHp = document.querySelector(fields.noHp)?.value || '';
+          basicData.email = document.querySelector(fields.email)?.value || '';
+          basicData.deskripsiUsaha = document.querySelector(fields.deskripsiUsaha)?.value || '';
+          basicData.kategori = document.querySelector(fields.kategori)?.value || '';
+          basicData.jamOperasional = document.querySelector(fields.jamOperasional)?.value || '';
+        } catch(e) { console.warn(e);}
+        
+        // Validasi wajib
+        if (!basicData.namaUMKM || !basicData.namaPemilik || !basicData.alamat || !basicData.noHp || !basicData.deskripsiUsaha || !basicData.kategori || !basicData.jamOperasional) {
+          alert('Mohon lengkapi semua field yang wajib diisi (ditandai *)');
+          return;
+        }
+        
+        // Validasi minimal satu produk lengkap (nama produk + harga)
+        const produkItems = document.querySelectorAll('.product-item');
+        let produkValid = true;
+        let produkList = [];
+        produkItems.forEach((item, idx) => {
+          const nama = item.querySelector('.nama-produk')?.value.trim();
+          const harga = item.querySelector('.harga-produk')?.value.trim();
+          const desk = item.querySelector('.desk-produk')?.value.trim();
+          if (!nama || !harga) {
+            produkValid = false;
+            alert(`Produk ke-${idx+1}: Nama produk dan Harga harus diisi!`);
+            return;
+          }
+          produkList.push({ nama, harga: parseInt(harga) || 0, deskripsi: desk || '-' });
+        });
+        if (!produkValid || produkList.length === 0) return;
+        
+        // Tampilkan data di console (simulasi kirim ke backend)
+        console.log('🟢 Data Pendaftaran UMKM (Shiren’s Seblak Bar):');
+        console.log({ ...basicData, produk: produkList });
+        
+        // Tampilkan notifikasi sukses
+        showSuccessToast();
+        
+        // Optional: reset form? biarkan user puas melihat data, tidak direset total. tapi bisa juga direset jika ingin
+        // form.reset(); // kalau ingin reset setelah sukses, uncomment, tapi hapus susah. biarkan saja dengan pesan sukses.
+        // Karena tampilan interaktif, kita biarkan data terisi dan user dapat mengedit kembali.
+      });
+      
+      // reset button handling
+      const resetBtn = document.querySelector('button[type="reset"]');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', (e) => {
+          if (confirm('Reset semua data form? Data produk tambahan akan kembali ke satu produk default.')) {
+            // reset bawaan tidak akan menghapus produk dinamis, kita lakukan manual reset
+            while (produkContainer.children.length > 1) {
+              produkContainer.lastChild.remove();
+            }
+            // reset value pada form umum
+            form.reset();
+            // reset produk pertama (default) kosongkan
+            const firstProduct = produkContainer.querySelector('.product-item');
+            if (firstProduct) {
+              const namaInput = firstProduct.querySelector('.nama-produk');
+              const hargaInput = firstProduct.querySelector('.harga-produk');
+              const deskInput = firstProduct.querySelector('.desk-produk');
+              if(namaInput) namaInput.value = '';
+              if(hargaInput) hargaInput.value = '';
+              if(deskInput) deskInput.value = '';
+            }
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
